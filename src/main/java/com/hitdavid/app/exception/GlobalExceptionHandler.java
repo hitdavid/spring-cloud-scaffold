@@ -15,7 +15,6 @@ class GlobalExceptionHandler {
 
     public static final String DEFAULT_ERROR_VIEW = "page/error";
 
-
     @ExceptionHandler(value = Exception.class)
     public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
         ModelAndView mav = new ModelAndView();
@@ -24,7 +23,6 @@ class GlobalExceptionHandler {
         mav.setViewName(DEFAULT_ERROR_VIEW);
         return mav;
     }
-
 
     @ExceptionHandler(value = JsonException.class)
     @ResponseBody

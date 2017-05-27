@@ -11,7 +11,6 @@ import com.hitdavid.app.dao.repository.UserRoleRepository;
 import com.hitdavid.app.security.Md5PasswordEncoder;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -27,7 +26,6 @@ import java.util.List;
  */
 
 @Service
-@CacheConfig(cacheNames = "users")
 public class UserService implements Serializable {
 
     @Autowired private transient Md5PasswordEncoder md5PasswordEncoder;
@@ -72,18 +70,7 @@ public class UserService implements Serializable {
 
     public Collection<GrantedAuthority> getAllRoleNamesById(Long userId) {
 
-        List<UserRole> userRoles = userRoleRepository.findByUid(userId);
-        if(CollectionUtils.isEmpty(userRoles)){
-            //未授权角色
-            return new ArrayList<>();
-        }
-        ArrayList<Long> roleIds = new ArrayList<>();
-
-        for(UserRole ur : userRoles) {
-            roleIds.add(ur.getRid());
-        }
-
-        List<Role> roles = roleRepository.findAllByIdIn(roleIds);
+        List<Role> roles = getAllRolesById(userId);
 
         Collection<GrantedAuthority> authorities = new HashSet<>();
 
@@ -98,6 +85,25 @@ public class UserService implements Serializable {
         }
 
         return authorities;
+    }
+
+
+    public List<Role> getAllRolesById(Long userId) {
+
+        List<UserRole> userRoles = userRoleRepository.findByUid(userId);
+        if(CollectionUtils.isEmpty(userRoles)){
+            //未授权角色
+            return new ArrayList<>();
+        }
+        ArrayList<Long> roleIds = new ArrayList<>();
+
+        for(UserRole ur : userRoles) {
+            roleIds.add(ur.getRid());
+        }
+
+        List<Role> roles = roleRepository.findAllByIdIn(roleIds);
+
+        return roles;
     }
 
 }

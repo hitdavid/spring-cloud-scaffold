@@ -32,13 +32,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     protected org.springframework.security.authentication.encoding.Md5PasswordEncoder md5PasswordEncoder;
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
+//            .csrf().disable()
             .authorizeRequests()
-            .antMatchers("/hello", "/user/").permitAll()
-            .anyRequest().authenticated()
+            .antMatchers("/hello","/login","/error").permitAll()
+            .antMatchers("/user/").hasAnyRole("ROLE_USER", "ROLE_ADMIN")
+//            .anyRequest().authenticated()
             .and()
             .formLogin().loginPage("/login").permitAll()
             .and()

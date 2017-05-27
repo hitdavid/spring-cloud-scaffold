@@ -3,6 +3,7 @@ package com.hitdavid.app.dao.model;
 import com.hitdavid.app.constant.STATUS;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheConfig;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,6 +15,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "User")
+@CacheConfig(cacheNames = "users")
 public class User implements Serializable {
 
     private static final Logger log = LoggerFactory.getLogger(User.class);
