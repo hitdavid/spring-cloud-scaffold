@@ -1,14 +1,13 @@
 package com.hitdavid.app.session;
 
 import com.hitdavid.app.dao.model.Role;
-import com.hitdavid.app.dao.model.User;
 import com.hitdavid.app.security.SecurityUser;
+import com.hitdavid.app.security.SecurityUtil;
 import com.hitdavid.app.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -46,9 +45,9 @@ public class SessionHelper {
     public SessionHelper() {
     }
 
-    public ArrayList<Role> getRoleFormSession(HttpSession session) {
+    public ArrayList<Role> getRoleFormSession() {
 
-        Long uid = getUserIdFromSession(session);
+        Long uid = getUserIdFromSession();
         if(uid == null) {
             return null;
         }
@@ -59,34 +58,14 @@ public class SessionHelper {
         }
     }
 
-    public Long getUserIdFromSession(HttpSession session) {
+    public Long getUserIdFromSession() {
 
-        if (session != null) {
-            log.info(session.getId());
-            log.info(session.toString());
-
-            SecurityContext token = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
-
-            if(token != null) {
-                SecurityUser user = (SecurityUser) token.getAuthentication().getPrincipal();
-                if(user != null) {
-                    Long uid = user.getId();
-                    return uid;
-                }
-            }
-        }
-        return null;
+        Long uid = SecurityUtil.getUid();
+        return uid;
     }
 
-    public User getUserInfoFromSession(HttpSession session) {
+    public SecurityUser getUserInfoFromSession(HttpSession session) {
 
-        Long uid = getUserIdFromSession(session);
-        if(uid == null) {
-            return null;
-        }
-        else {
-            User user = userService.findById(uid);
-            return user;
-        }
+        return SecurityUtil.getUser();
     }
 }

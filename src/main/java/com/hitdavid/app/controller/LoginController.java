@@ -42,7 +42,7 @@ public class LoginController {
         if (session != null) {
             log.info(session.getId());
 
-            ArrayList<Role> roles = sessionHelper.getRoleFormSession(session);
+            ArrayList<Role> roles = sessionHelper.getRoleFormSession();
             if(roles == null) {
                 return "page/login";
             }
