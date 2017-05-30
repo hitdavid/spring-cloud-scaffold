@@ -30,4 +30,5 @@ public interface RoleRepository extends PagingAndSortingRepository<Role, Long> {
     List<Role> findAll();
 
     List<Role> findAllByIdIn(List<Long> ids);
+
 }
