@@ -5,6 +5,14 @@ jdk:
 
 sudo: false
 
+services:
+  - redis-server
+
+cache:
+  directories:
+  - .autoconf
+  - $HOME/.m2
+
 addons:
   apt:
     packages:
