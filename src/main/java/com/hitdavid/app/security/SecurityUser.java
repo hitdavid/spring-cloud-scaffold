@@ -14,6 +14,7 @@ public class SecurityUser extends org.springframework.security.core.userdetails.
     private String phone;
 
     public SecurityUser(
+
         Long id,
         String phone,
         String password,
@@ -25,6 +26,7 @@ public class SecurityUser extends org.springframework.security.core.userdetails.
         String salt) {
 
         super(phone, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+
         this.salt = salt;
         this.id = id;
         this.phone = phone;

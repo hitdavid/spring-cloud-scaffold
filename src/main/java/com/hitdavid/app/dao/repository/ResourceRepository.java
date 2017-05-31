@@ -15,4 +15,7 @@ import java.util.List;
 public interface ResourceRepository extends CrudRepository<Resource, Long> {
 
     List<Resource> findAllByIdIn(List<Long> ids);
+
+    List<Resource> findAll();
+
 }

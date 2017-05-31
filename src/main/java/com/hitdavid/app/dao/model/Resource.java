@@ -13,7 +13,7 @@ public class Resource  implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     private Integer type;
 
@@ -36,7 +36,7 @@ public class Resource  implements Serializable {
             id, title, url);
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 

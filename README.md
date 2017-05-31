@@ -1,6 +1,6 @@
-##Another scaffold project for spring
+## Another scaffold project for spring
 
-[![Build Status](https://travis-ci.org/hitdavid/app.svg?branch=master)](https://travis-ci.org/hitdavid/app)
+CI by travis-ci.org:[![Build Status](https://travis-ci.org/hitdavid/app.svg?branch=master)](https://travis-ci.org/hitdavid/app)
 
 
 ### cmd

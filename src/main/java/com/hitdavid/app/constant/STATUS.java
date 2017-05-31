@@ -6,10 +6,16 @@ package com.hitdavid.app.constant;
 public enum STATUS {
 
     USER_NORMAL(101),
-    USER_BLOCKED(10001),
-
     ROLE_NORMAL(201),
-    ROLE_BLOCKED(20001);
+    RES_NORMAL(301),
+
+    BLOCKED_STATUS_GROUP(10000),
+    USER_BLOCKED(10001),
+    ROLE_BLOCKED(20001),
+    RES_BLOCKED(30001),
+
+    MAX_VALUE_STATUS_GROUP(100000);
+
 
     private int value;
 
