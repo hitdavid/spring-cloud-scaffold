@@ -1,26 +1,26 @@
 package com.hitdavid.app.controller;
 
-import com.hitdavid.app.exception.JsonException;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by David on 2017/5/19.
  */
-@RestController
-@RequestMapping("/hello")
+@Controller
+@RequestMapping("/")
 public class HelloController {
 
-    @RequestMapping("")
+    @RequestMapping("hello")
+    @ResponseBody
     public String index() throws Exception {
-//        throw new Exception("发生错误");
         return "Hello World";
     }
 
-    @RequestMapping("/json")
-    public String json() throws JsonException {
-//        throw new JsonException("发生错误2");
-        return "";
+    @RequestMapping(value={"welcome",""}, method = RequestMethod.GET)
+    public String welcome(){
+        return "page/index";
     }
 
 }

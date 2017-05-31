@@ -1,13 +1,13 @@
 package com.hitdavid.app.controller;
 
 import com.hitdavid.app.dao.model.Role;
-import com.hitdavid.app.dao.model.User;
 import com.hitdavid.app.service.UserService;
 import com.hitdavid.app.session.SessionHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * Created by David on 2017/5/21.
  */
 @Controller
-@RequestMapping(value="/login")
+@RequestMapping("/login")
 public class LoginController {
 
     private static final Logger log = LoggerFactory.getLogger(LoginController.class);
@@ -32,12 +32,18 @@ public class LoginController {
     @Autowired
     private SessionHelper sessionHelper;
 
-    @RequestMapping(value="", method= RequestMethod.GET)
-    public String index(
+    @RequestMapping(value="", method = {RequestMethod.GET, RequestMethod.POST})
+    public String login(
+        @RequestParam(value = "error", required = false) String error,
+        Model model,
         HttpServletRequest request,
         HttpServletResponse response,
         HttpSession session
     ) throws Exception {
+
+        if (error != null) {
+            return "page/error";
+        }
 
         if (session != null) {
             log.info(session.getId());
@@ -48,26 +54,19 @@ public class LoginController {
             }
             else {
                 for (Role r : roles) {
-                    if (r.getName().equalsIgnoreCase("ROLE_ADMIN")) {
+                    if (r.getName().equalsIgnoreCase("ADMIN")) {
+//                        response.sendRedirect("/admin");
                         return "page/admin";
                     }
                 }
                 for (Role r : roles) {
-                    if (r.getName().equalsIgnoreCase("ROLE_USER")) {
+                    if (r.getName().equalsIgnoreCase("USER")) {
+//                        response.sendRedirect("/");
                         return "page/index";
                     }
                 }
             }
         }
         return "page/login";
-    }
-
-    @RequestMapping(value="", method= RequestMethod.POST)
-    public String login(
-        @RequestParam(name = "phone") String phone,
-        @RequestParam(name = "password") String password
-    ) throws Exception {
-        User u = userService.login(phone, password);
-        return u.toString();
     }
 }
