@@ -1,3 +1,18 @@
+create table Resource
+(
+	id bigint auto_increment
+		primary key,
+	type int default '0' null,
+	status int null,
+	title varchar(50) null,
+	url varchar(2048) null,
+	description varchar(100) null,
+	fatherId bigint null,
+	constraint Resource_id_uindex
+		unique (id)
+)
+;
+
 create table Role
 (
 	id bigint auto_increment
@@ -9,6 +24,25 @@ create table Role
 	constraint User_uid_uindex
 		unique (id)
 )
+;
+
+create table Role_Resource
+(
+	id bigint auto_increment
+		primary key,
+	roleId bigint null,
+	resourceId bigint null,
+	constraint Role_Resource_id_uindex
+		unique (id)
+)
+;
+
+create index Role_Resource_resourceId_index
+	on Role_Resource (resourceId)
+;
+
+create index Role_Resource_roleId_index
+	on Role_Resource (roleId)
 ;
 
 create table User
