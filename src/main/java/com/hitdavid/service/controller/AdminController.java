@@ -28,7 +28,8 @@ public class AdminController {
     @RequestMapping("/service-instances/{applicationName}")
     @ResponseBody
     public List<ServiceInstance> serviceInstancesByApplicationName(
-        @PathVariable String applicationName) {
+        @PathVariable String applicationName
+    ) {
         return this.discoveryClient.getInstances(applicationName);
     }
 
