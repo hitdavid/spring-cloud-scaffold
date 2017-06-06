@@ -1,0 +1,32 @@
+zuul:
+  prefix: /api #为zuul设置一个公共的前缀
+  #ignoredServices: '*'
+  routes:
+    cloud-server:
+      path: /server/**
+      serviceId: cloud-server
+
+#    cloud-client:
+#      path: /client/**
+#      serviceId: cloud-client
+
+
+#ribbon:
+#  eureka:
+#    enabled: false #配置zuul路由时用将此属性设置为false
+
+
+spring:
+  application:
+    name: zuul-ribbon
+
+server:
+  port: 8000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health

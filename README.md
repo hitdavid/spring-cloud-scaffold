@@ -40,9 +40,14 @@ CI by travis-ci.org:[![Build Status](https://travis-ci.org/hitdavid/app.svg?bran
 
 to run:
 
-mvn clean package spring-boot:run
+> $ sh ./build_and_run.sh
 
-to debug:
+to stop:
+
+> $ sh ./stop.sh
+
+
+mvn clean package spring-boot:run
 
 mvn clean package spring-boot:run -Drun.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"
 
