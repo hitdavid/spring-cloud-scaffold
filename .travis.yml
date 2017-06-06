@@ -18,4 +18,4 @@ addons:
     packages:
       - oracle-java8-installer
 
-install: ./build_and_run.sh
+script: ./build_and_run.sh
