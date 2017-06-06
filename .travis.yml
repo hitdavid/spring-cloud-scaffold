@@ -3,7 +3,7 @@ language: java
 jdk:
   - oraclejdk8
 
-sudo: true
+sudo: false
 
 services:
   - redis-server
@@ -18,4 +18,4 @@ addons:
     packages:
       - oracle-java8-installer
 
-script: ./build_and_run.sh
+script: ./build.sh
