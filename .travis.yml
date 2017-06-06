@@ -18,7 +18,4 @@ addons:
     packages:
       - oracle-java8-installer
 
-install: 
-  - ./eureka/mvn clean package
-  - ./zuul/mvn clean package
-  - ./rest-api/mvn clean package
+install: ./build_and_run.sh
