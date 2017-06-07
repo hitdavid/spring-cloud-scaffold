@@ -1,3 +1,5 @@
+prepare and download jdk-8u131-linux-x64.tar.gz to this folder first!!!
+ 
 docker build -t hitdavid/eureka .
 
 docker run -d -p 8001:8761 -e HOST=10.1.146.184 -e PORT=8002 hitdavid/eureka

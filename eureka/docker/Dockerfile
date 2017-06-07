@@ -1,6 +1,7 @@
 FROM ubuntu:latest
 MAINTAINER David hitdavid@gmail.com
 
+
 RUN mkdir /usr/local/jdk1.8.0_131
 COPY jdk-8u131-linux-x64.tar.gz  ./
 RUN tar -zxvf ./jdk-8u131-linux-x64.tar.gz -C /usr/local/
