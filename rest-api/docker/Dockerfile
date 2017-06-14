@@ -21,6 +21,6 @@ COPY ./jar_bin.jar  /usr/local/app/
 COPY ./onStart.sh /usr/local/app/
 RUN chmod 755 /usr/local/app/onStart.sh
 
-EXPOSE 8080
+EXPOSE 8001
 
 ENTRYPOINT ["/usr/local/app/onStart.sh"]
