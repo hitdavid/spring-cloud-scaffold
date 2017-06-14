@@ -20,12 +20,12 @@ spring:
   application:
     name: zuul-ribbon
   datasource:
-    url: jdbc:mysql://172.16.33.249:3306/api-gateway?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://172.16.33.250:3306/api-gateway?useUnicode=true&characterEncoding=utf-8
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
   rabbitmq:
-    host: 172.16.33.248
+    host: 172.16.33.250
     port: 5672
     username: guest
     password: guest
@@ -36,7 +36,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://172.16.33.249:8761/eureka/
+      defaultZone: http://172.16.33.248:8761/eureka/
   instance:
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
