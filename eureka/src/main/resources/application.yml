@@ -12,4 +12,4 @@ eureka:
     fetch-registry: false
 
   instance:
-    perferIpAddress: true
+    prefer-ip-address: true

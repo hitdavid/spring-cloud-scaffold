@@ -40,7 +40,7 @@ eureka:
   instance:
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
-    perferIpAddress: true
+    prefer-ip-address: true
 
 logging:
   level:
