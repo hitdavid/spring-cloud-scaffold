@@ -2,14 +2,14 @@ spring:
   application:
     name: cloud-server
   datasource:
-    url: jdbc:mysql://172.16.33.249:3306/api-gateway
+    url: jdbc:mysql://172.16.33.250:3306/api-gateway
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
   redis:
-    host: 172.16.33.249
+    host: 172.16.33.250
   rabbitmq:
-    host: 172.16.33.248
+    host: 172.16.33.250
     port: 5672
     username: guest
     password: guest
@@ -20,7 +20,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://172.16.33.249:8761/eureka/
+      defaultZone: http://172.16.33.248:8761/eureka/
   instance:
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
