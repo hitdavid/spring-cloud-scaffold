@@ -25,23 +25,6 @@ public class SessionHelper {
     @Autowired
     private UserService userService;
 
-//    private static volatile SessionHelper instance = null;
-//    private static final Object lock = new Object();
-//
-//    public static SessionHelper getInstance() {
-//
-//        if(instance == null) {
-//            synchronized (lock) {
-//                if(instance == null) {
-//                    instance = new SessionHelper();
-//                    return instance;
-//                }
-//            }
-//        }
-//
-//        return instance;
-//    }
-
     public SessionHelper() {
     }
 

@@ -13,6 +13,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @ComponentScan
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 24 * 60 * 60)
 public class SessionConfig {
+
     @Bean
     public JedisConnectionFactory connectionFactory() {
         try {

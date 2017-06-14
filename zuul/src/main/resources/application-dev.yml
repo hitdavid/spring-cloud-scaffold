@@ -1,0 +1,51 @@
+zuul:
+  prefix: /api #为zuul设置一个公共的前缀
+  #ignoredServices: '*'
+#  routes:
+#    cloud-server:
+#      path: /server/**
+#      serviceId: cloud-server
+
+#    cloud-client:
+#      path: /client/**
+#      serviceId: cloud-client
+
+
+#ribbon:
+#  eureka:
+#    enabled: false #配置zuul路由时用将此属性设置为false
+
+
+spring:
+  application:
+    name: zuul-ribbon
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/app?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  rabbitmq:
+    host: 172.16.33.248
+    port: 5672
+    username: guest
+    password: guest
+
+server:
+  port: 8000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.16.33.249:8761/eureka/
+  instance:
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+
+logging:
+  level:
+    jdbc:
+      sqltiming: INFO
+      sqlonly: OFF
+      audit: OFF
+      resultset: OFF
+      connection: OFF
