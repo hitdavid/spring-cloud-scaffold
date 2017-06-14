@@ -1,6 +1,6 @@
 spring:
   application:
-    name: cloud-server
+    name: zuul-manager
   datasource:
     url: jdbc:mysql://172.16.33.250:3306/api-gateway
     username: root
@@ -15,7 +15,7 @@ spring:
     password: guest
 
 server:
-  port: 8080
+  port: 8001
 
 eureka:
   client:
