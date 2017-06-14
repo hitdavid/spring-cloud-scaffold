@@ -18,7 +18,7 @@ public class SessionConfig {
     public JedisConnectionFactory connectionFactory() {
         try {
             JedisConnectionFactory cf = new JedisConnectionFactory();
-            cf.setHostName("localhost");
+            cf.setHostName("172.16.33.250");
             cf.setPort(6379);
             cf.afterPropertiesSet();
             return cf;
