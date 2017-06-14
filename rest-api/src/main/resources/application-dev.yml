@@ -24,5 +24,6 @@ eureka:
   instance:
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
+    perferIpAddress: true
 
 
