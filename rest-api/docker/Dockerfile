@@ -11,8 +11,6 @@ RUN ls /usr/local/jdk1.8.0_131
 ENV JAVA_HOME /usr/local/jdk1.8.0_131
 ENV PATH $JAVA_HOME/bin:$PATH
 ENV CLASSPATH .:$JAVA_HOME/lib
-ENV HOST 10.1.146.184
-ENV PORT 8002
 
 RUN java -version
 

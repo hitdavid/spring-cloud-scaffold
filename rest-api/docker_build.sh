@@ -4,6 +4,6 @@
 rm -f ./docker/jar_bin.jar
 cp ./target/jar_bin.jar ./docker/jar_bin.jar
 cd docker
-docker build -t hitdavid/zuul-manager .
-docker ps | grep 0.0.0.0:8001 | awk '{print $1}' | xargs docker stop
-docker run -d -p 8001:8001 hitdavid/zuul-manager
+docker build -t hitdavid/api-gateway-manager .
+docker tag hitdavid/api-gateway-manager registry.gzq.chanjet.com/hitdavid/api-gateway-manager:2017.06.15.011
+docker push registry.gzq.chanjet.com/hitdavid/api-gateway-manager:2017.06.15.011

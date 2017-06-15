@@ -1,14 +1,38 @@
 version: '2'
 services:
-    api-gateway:
-        image: registry.gzq.chanjet.com/hitdavid/eureka:2017.06.15.002
-        network_mode: bridge
-#        links:
-#            - api-gateway:api-gateway
-        environment:
+
+  api-gateway-manager:
+    image: registry.gzq.chanjet.com/hitdavid/api-gateway-manager:2017.06.15.001
+    network_mode: bridge
+    links:
+      - api-gateway:api-gateway
+      - eureka:eureka
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://172.16.33.249:8761/eureka/
+      - HOST=172.16.33.249
+      - PORT=8761
+    ports:
+      - 8001:8001
+
+  api-gateway:
+    image: registry.gzq.chanjet.com/hitdavid/api-gateway:2017.06.15.001
+    network_mode: bridge
+    links:
+      - eureka:eureka
+    environment:
             - SPRING_PROFILES_ACTIVE=dev
             - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://172.16.33.249:8761/eureka/
             - HOST=172.16.33.249
             - PORT=8761
-        ports:
-            - 8761:8761
+
+  eureka:
+    image: registry.gzq.chanjet.com/hitdavid/eureka:2017.06.15.002
+    network_mode: bridge
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://172.16.33.249:8761/eureka/
+      - HOST=172.16.33.249
+      - PORT=8761
+    ports:
+      - 8761:8761

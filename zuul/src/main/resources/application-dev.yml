@@ -35,16 +35,15 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://172.16.33.248:8761/eureka/
+      defaultZone: http://172.16.33.248:8761/eureka/, http://172.16.33.249:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
   instance:
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
-    prefer-ip-address: true
     appname: api-gateway
     non-secure-port: 8000
-    ip-address: 127.0.0.1
+    non-secure-port-enabled: true
 
 zuul:
   prefix: /api #为zuul设置一个公共的前缀
