@@ -5,7 +5,6 @@ services:
     image: registry.gzq.chanjet.com/hitdavid/api-gateway-manager:2017.06.15.012
     network_mode: bridge
     links:
-      - api-gateway:api-gateway
       - eureka:eureka
     environment:
       - SPRING_PROFILES_ACTIVE=dev
