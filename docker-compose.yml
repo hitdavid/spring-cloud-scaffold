@@ -17,6 +17,7 @@ services:
     network_mode: bridge
     links:
       - eureka:eureka
+      - api-gateway-manager:api-gateway-manager
     environment:
       - SPRING_PROFILES_ACTIVE=dev
     ports:
