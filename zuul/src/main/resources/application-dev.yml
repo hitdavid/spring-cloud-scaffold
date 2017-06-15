@@ -1,5 +1,4 @@
-zuul:
-  prefix: /api #为zuul设置一个公共的前缀
+
   #ignoredServices: '*'
 #  routes:
 #    cloud-server:
@@ -18,7 +17,7 @@ zuul:
 
 spring:
   application:
-    name: zuul-ribbon
+    name: api-gateway
   datasource:
     url: jdbc:mysql://172.16.33.250:3306/api-gateway?useUnicode=true&characterEncoding=utf-8
     username: root
@@ -35,12 +34,20 @@ server:
 
 eureka:
   client:
-    service-url:
+    serviceUrl:
       defaultZone: http://172.16.33.248:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
   instance:
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
     prefer-ip-address: true
+    appname: api-gateway
+    non-secure-port: 8000
+    ip-address: 127.0.0.1
+
+zuul:
+  prefix: /api #为zuul设置一个公共的前缀
 
 logging:
   level:
