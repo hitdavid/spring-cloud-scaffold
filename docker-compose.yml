@@ -19,8 +19,8 @@ services:
       - eureka:eureka
     environment:
       - SPRING_PROFILES_ACTIVE=dev
-      - HOST=172.16.33.249
-      - PORT=8761
+    ports:
+      - 8000:8000
 
   eureka:
     image: registry.gzq.chanjet.com/hitdavid/eureka:2017.06.15.011
@@ -28,7 +28,5 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://172.16.33.249:8761/eureka/, http://172.16.33.248:8761/eureka/
-      - HOST=172.16.33.249
-      - PORT=8761
     ports:
       - 8761:8761
