@@ -1,0 +1,14 @@
+version: '1'
+services:
+    api-gateway:
+        image: registry.gzq.chanjet.com/hitdavid/eureka:2017.06.15.002
+        network_mode: bridge
+        links:
+            - api-gateway:api-gateway
+        environment:
+            - SPRING_PROFILES_ACTIVE=dev
+            - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://172.16.33.249:8761/eureka/
+            - HOST=172.16.33.249
+            - PORT=8761
+        ports:
+            - 8761:8761

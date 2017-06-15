@@ -7,3 +7,12 @@ docker run -d -p 8001:8761 -e HOST=10.1.146.184 -e PORT=8002 hitdavid/eureka
 docker run -d -p 8002:8761 -e HOST=10.1.146.184 -e PORT=8001 hitdavid/eureka
 
 docker run -d -p 8001:8761 -e HOST=172.16.33.249 -e PORT=8001 hitdavid/eureka
+
+
+
+docker build -t hitdavid/eureka .
+
+docker tag hitdavid/eureka registry.gzq.chanjet.com/hitdavid/eureka:2017.06.15.001
+
+docker push registry.gzq.chanjet.com/hitdavid/eureka:2017.06.15.001 
+

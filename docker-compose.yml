@@ -1,0 +1,50 @@
+version: '1'
+services:
+    api-gateway:
+        image: registry.gzq.chanjet.com/hitdavid/api-gateway:2017.06.15.001
+        network_mode: bridge
+        links:
+            - jhipster-registry:jhipster-registry
+            - favoriterest-mongodb:favoriterest-mongodb
+        environment:
+            - SPRING_PROFILES_ACTIVE=dev
+            - SPRING_CLOUD_CONFIG_URI=http://admin:admin@jhipster-registry:8761/config
+            - SPRING_DATA_MONGODB_URI=mongodb://favoriterest-mongodb:27017
+            - SPRING_DATA_MONGODB_DATABASE=favoriterest
+            - JHIPSTER_SLEEP=10
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+            - JHIPSTER_CONFIG_TYPE=/gzq/gzq/inte
+        ports:
+            - 5599:5599
+    favoriterest-mongodb:
+        container_name: favoriterest-mongodb
+        image: registry.gzq.chanjet.com/spring-cloud/mongo:3.2.10
+        network_mode: bridge
+    gzqgateway-app:
+        image: registry.gzq.chanjet.com/spring-cloud/gzqgateway:2017.06.02
+        network_mode: bridge
+        links:
+            - jhipster-registry:jhipster-registry
+            - gzqgateway-mysql:gzqgateway-mysql
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+            - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+            - SPRING_DATASOURCE_URL=jdbc:mysql://gzqgateway-mysql:3306/gzqgateway?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=30
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+        ports:
+            - 2020:2020
+    gzqgateway-mysql:
+        image: registry.gzq.chanjet.com/spring-cloud/mysql:5.7.18
+        network_mode: bridge
+        environment:
+            - MYSQL_USER=root
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            - MYSQL_DATABASE=gzqgateway
+        command:             mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8
+            --explicit_defaults_for_timestamp
+    jhipster-registry:
+        extends:
+            file: jhipster-registry.yml
+            service: jhipster-registry
