@@ -27,6 +27,5 @@ services:
     network_mode: bridge
     environment:
       - SPRING_PROFILES_ACTIVE=dev
-      - EUREKA.CLIENT.SERVICEURL.DEFAULTZONE=http://172.16.33.249:8761/eureka/, http://172.16.33.248:8761/eureka/
     ports:
       - 8761:8761
