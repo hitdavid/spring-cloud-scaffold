@@ -1,4 +1,4 @@
-version: '1'
+version: '2'
 services:
     api-gateway:
         image: registry.gzq.chanjet.com/hitdavid/eureka:2017.06.15.002
